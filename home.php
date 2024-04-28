@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
 <!----------------Header Section -------------->
 <section class="container relative my-4 mx-auto">
  <div class="hero h-[600px] rounded-lg" style="background-image: url('./src/images/header.jpg');">
@@ -27,13 +28,41 @@
 </section>
 
 <!-- ----------main body------ -->
-<main>
-  <h1>Our Packages</h1>
-</main>
+<!-- ----------main body------ -->
+  <!-- Main body section -->
+  <main class="container mx-auto">
+        <h1>Our Packages</h1>
+        <div class="grid grid-cols-3 gap-4" id="packages-container"></div>
 
-
-
-
+        <!-- JavaScript to fetch and display packages -->
+        <script>
+            // Fetch packages from packages.php
+            fetch('packages.php')
+                .then(response => response.json())
+                .then(packages => {
+                    // Create HTML for each package and insert into packages-container
+                    const packagesContainer = document.getElementById('packages-container');
+                    packages.forEach(package => {
+                        const packageHTML = `
+                            <div class="my-4 ">
+                            <div class="card bg-blue-900 text-primary-content">
+                            <div class="card-body">
+                            <h2 class="card-title">${package.name}</h2>
+                            <p>${package.description}</p>
+                            <p>Price: $${package.price}</p>
+                            <div class="card-actions justify-end">
+                             <button class="btn">Buy Now</button>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        `;
+                        packagesContainer.innerHTML += packageHTML;
+                    });
+                })
+                .catch(error => console.error('Error fetching packages:', error));
+        </script>
+    </main>
 
 
 
