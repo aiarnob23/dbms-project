@@ -15,6 +15,33 @@
 
 <body>
 
+<!-- -------------navbar ----------------- -->
+<nav class="container mx-auto">
+<div class="navbar bg-base-100">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a href="home.php">Home</a></li>
+        <li><a target="_blank" href="./blogPage.html">Blog</a></li>
+      </ul>
+    </div>
+    <a class="btn btn-ghost text-xl">Travel Agency</a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      <li><a href="home.php">Home</a></li>
+      <li><a target="_blank" href="./blogPage.html">Blog</a></li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <a class="btn">Contact us</a>
+  </div>
+</div>
+</nav>
+
 <!----------------Header Section -------------->
 <section class="container relative my-4 mx-auto">
  <div class="hero h-[600px] rounded-lg" style="background-image: url('./src/images/header.jpg');">
@@ -31,7 +58,7 @@
 <!-- ----------main body------ -->
   <!-- Main body section -->
   <main class="container mx-auto">
-        <h1>Our Packages</h1>
+        <h1 class="text-blue-900 text-3xl font-semibold text-center mt-12 mb-6">Our Packages</h1>
         <div class="grid grid-cols-3 gap-4" id="packages-container"></div>
 
         <!-- JavaScript to fetch and display packages -->
@@ -51,7 +78,7 @@
                             <p>${package.description}</p>
                             <p>Price: $${package.price}</p>
                             <div class="card-actions justify-end">
-                             <button class="btn">Buy Now</button>
+                             <button class="btn">Description</button>
                             </div>
                             </div>
                             </div>
