@@ -26,6 +26,7 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li><a href="home.php">Home</a></li>
         <li><a target="_blank" href="./blogPage.html">Blog</a></li>
+        <li><a target="_blank" href="./BookingHistory.php">Booking History</a></li>
       </ul>
     </div>
     <a class="btn btn-ghost text-xl">Travel Agency</a>
@@ -34,6 +35,7 @@
     <ul class="menu menu-horizontal px-1">
       <li><a href="home.php">Home</a></li>
       <li><a target="_blank" href="./blogPage.html">Blog</a></li>
+      
     </ul>
   </div>
   <div class="navbar-end">
