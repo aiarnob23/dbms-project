@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- playcdn links of tailwindcss -->
+     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <!-- link of raw css -->
+    <link rel="stylesheet" href="./styles/style.css">
+    <!-- playcdn links of daisyui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <title>Booking History</title>
 </head>
-<body>
+<body class="container mx-auto">
+<div>
+        <a href="./home.php">Home</a>
+    </div>
     <h1>Booking History</h1>
 
+    <div class="mt-8 bg-gray-200 p-8 rounded-lg flex justify-center ">
     <form action="bookingHistory.php" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Show Booking History">
+        <label for="email" >Email:</label>
+        <input required type="email" id="email" name="email" required><br><br>
+        <label for="password" >Password:</label>
+        <input required class=" input input-bordered rounded-lg" type="password" id="password" name="password" required><br><br>
+        <input class="btn btn-primary" type="submit" value="Show Booking History">
     </form>
+    </div>
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,13 +49,14 @@
         }
 
         // Query to fetch user details based on email and password
-        $sql = "SELECT bookings.booking_id, customers.name AS customer_name, customers.email AS customer_email, customers.phone AS customer_phone, bookings.package_id, bookings.booking_time, packages.name AS package_name, packages.description, packages.price FROM bookings INNER JOIN packages ON bookings.package_id = packages.id INNER JOIN customers ON bookings.email = customers.email WHERE bookings.email = 'c@gmail.com' AND bookings.password = '6666'";
+        $sql = "SELECT bookings.booking_id, customers.name AS customer_name, customers.email AS customer_email, customers.phone AS customer_phone, bookings.package_id, bookings.booking_time, packages.name AS package_name, packages.description, packages.price FROM bookings INNER JOIN packages ON bookings.package_id = packages.id INNER JOIN customers ON bookings.email = customers.email WHERE bookings.email = '$email' AND bookings.password = '$password'";
+
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // Display booking history
             echo "<h2>Booking History for $email</h2>";
-            echo "<table border='1'>
+            echo "<table class='table overflow-x-auto'>
                     <tr>
                         <th>Booking ID</th>
                         <th>Name</th>
@@ -69,12 +82,15 @@
             }
             echo "</table>";
         } else {
-            echo "No bookings found.";
+            echo "<p class='text-red-500 font-bold'>No Bookings Found</p>";
+
         }
 
         // Close connection
         $conn->close();
     }
     ?>
+
+
 </body>
 </html>

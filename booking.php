@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmation</title>
 </head>
-<body>
+<body class="">
     <h1>Booking Confirmation</h1>
 
     <h2>Package Information:</h2>
@@ -55,6 +55,7 @@
     }
     ?>
 
+    <div>
     <h2>Customer Information:</h2>
     <form action="confirm_booking.php" method="post">
         <label for="name">Name:</label>
@@ -68,5 +69,6 @@
         <input type="hidden" name="package_id" value="<?php echo $packageId; ?>">
         <input type="submit" value="Confirm Booking">
     </form>
+    </div>
 </body>
 </html>

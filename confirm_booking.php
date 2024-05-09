@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_customer->bind_param("sss", $name, $email, $phone);
 
     // Execute the statement for customers table
-    if ($stmt_customer->execute()) {
+    if (!$conn->connect_error) {
         // Prepare SQL statement to insert booking details into the bookings table
         $sql_booking = "INSERT INTO bookings (email, password, package_id, booking_time) VALUES (?, ?, ?, NOW())";
         $stmt_booking = $conn->prepare($sql_booking);
@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute the statement for bookings table
         if ($stmt_booking->execute()) {
             echo "Booking confirmed successfully!";
+            echo "<script>setTimeout(function(){ window.location.href = './home.php'; }, 1000);</script>";
         } else {
             echo "Error: " . $sql_booking . "<br>" . $conn->error;
         }

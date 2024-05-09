@@ -13,8 +13,8 @@
     <title>Document</title>
 </head>
 
-<body>
 
+<body>
 <!-- -------------navbar ----------------- -->
 <nav class="container mx-auto">
 <div class="navbar bg-base-100">
@@ -35,7 +35,7 @@
     <ul class="menu menu-horizontal px-1">
       <li><a href="home.php">Home</a></li>
       <li><a target="_blank" href="./blogPage.html">Blog</a></li>
-      
+      <li><a target="_blank" href="./BookingHistory.php">Booking History</a></li>
     </ul>
   </div>
   <div class="navbar-end">
