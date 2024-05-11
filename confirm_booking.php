@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Connect to your database
     $servername = "localhost";
-    $username = "root"; // Your MySQL username
-    $db_password = ""; // Your MySQL password
-    $database = "travelagency"; // Your MySQL database name
+    $username = "root";
+    $db_password = ""; 
+    $database = "travelagency"; 
 
     // Create connection
     $conn = new mysqli($servername, $username, $db_password, $database);
