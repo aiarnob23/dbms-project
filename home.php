@@ -77,7 +77,8 @@
                             <div class="card bg-blue-900 text-primary-content">
                             <div class="card-body">
                             <h2 class="card-title">${package.name}</h2>
-                            <p>${package.description}</p>
+                            <p>Package in Details: </p>
+                            <div class="h-[500px] mx-1 overflow-y-scroll"><p>${package.description}</p></div>
                             <p>Price: $${package.price}</p>
                             <div class="card-actions justify-end">
                            <button onclick="handleBooking(${package.id})" class="BookingBtn btn" data-package-id="${package.id}">Book</button>

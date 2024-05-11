@@ -30,11 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_customer->bind_param("sss", $name, $email, $phone);
 
     // Execute the statement for customers table
-    if (!$conn->connect_error) {
+    if ($stmt_customer->execute()) {
         // Prepare SQL statement to insert booking details into the bookings table
         $sql_booking = "INSERT INTO bookings (email, password, package_id, booking_time) VALUES (?, ?, ?, NOW())";
         $stmt_booking = $conn->prepare($sql_booking);
-        $stmt_booking->bind_param("sss",  $email, $password, $packageId);
+        $stmt_booking->bind_param("sss", $email, $password, $packageId);
 
         // Execute the statement for bookings table
         if ($stmt_booking->execute()) {
