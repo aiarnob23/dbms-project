@@ -57,7 +57,6 @@
 </section>
 
 <!-- ----------main body------ -->
-<!-- ----------main body------ -->
   <!-- Main body section -->
   <main class="container mx-auto">
         <h1 class="text-blue-900 text-3xl font-semibold text-center mt-12 mb-6">Our Packages</h1>
@@ -67,7 +66,7 @@
         <script>
             // Fetch packages from packages.php
             fetch('packages.php')
-                .then(response => response.json())
+                .then(res => res.json())
                 .then(packages => {
                     // Create HTML for each package and insert into packages-container
                     const packagesContainer = document.getElementById('packages-container');
@@ -78,7 +77,7 @@
                             <div class="card-body">
                             <h2 class="card-title">${package.name}</h2>
                             <p>Package in Details: </p>
-                            <div class="h-[500px] mx-1 overflow-y-scroll"><p>${package.description}</p></div>
+                            <div class="h-[400px] mx-1 overflow-y-scroll"><p>${package.description}</p></div>
                             <p>Price: $${package.price}</p>
                             <div class="card-actions justify-end">
                            <button onclick="handleBooking(${package.id})" class="BookingBtn btn" data-package-id="${package.id}">Book</button>
