@@ -1,35 +1,32 @@
 <?php
-// Connect to your database
+// DB connection
 $servername = "localhost";
 $username = "root"; 
 $password = ""; 
 $database = "travelagency";
 
-// Create connection
+// Creation of connection
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
+// Checkings of connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch packages from the database
+// Query to fetch packages from the DB
 $sql = "SELECT * FROM packages";
 $result = $conn->query($sql);
 
-// Initialize an empty array to store package data
-$packages = [];
 
-// Fetch packages and store them in the array
+$packages = [];
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $packages[] = $row;
     }
 }
 
-// Close connection
+// closing the connection
 $conn->close();
 
-// Encode packages data as JSON and echo it
 echo json_encode($packages);
 ?>

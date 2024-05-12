@@ -1,7 +1,6 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $name = $_POST['name'];
@@ -10,50 +9,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $packageId = $_POST['package_id'];
 
-    // Connect to your database
+    //DB connection
     $servername = "localhost";
     $username = "root";
     $db_password = ""; 
     $database = "travelagency"; 
 
-    // Create connection
+    // Creation of connection
     $conn = new mysqli($servername, $username, $db_password, $database);
 
-    // Check connection
+    // Checkings of connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare SQL statement to insert user details into the customers table
     $sql_customer = "INSERT INTO customers (name, email, phone) VALUES (?, ?, ?)";
     $stmt_customer = $conn->prepare($sql_customer);
     $stmt_customer->bind_param("sss", $name, $email, $phone);
 
-    // Execute the statement for customers table
     if ($stmt_customer->execute()) {
-        // Prepare SQL statement to insert booking details into the bookings table
         $sql_booking = "INSERT INTO bookings (email, password, package_id, booking_time) VALUES (?, ?, ?, NOW())";
         $stmt_booking = $conn->prepare($sql_booking);
         $stmt_booking->bind_param("sss", $email, $password, $packageId);
 
-        // Execute the statement for bookings table
         if ($stmt_booking->execute()) {
             echo "Booking confirmed successfully!";
             echo "<script>setTimeout(function(){ window.location.href = './home.php'; }, 1000);</script>";
         } else {
             echo "Error: " . $sql_booking . "<br>" . $conn->error;
         }
-        // Close statement for bookings table
         $stmt_booking->close();
     } else {
         echo "Error: " . $sql_customer . "<br>" . $conn->error;
     }
 
-    // Close statement and connection for customers table
     $stmt_customer->close();
     $conn->close();
-} else {
-    // If the form is not submitted, redirect back to the booking page
+} 
+else {
     header("Location: booking.php");
     exit;
 }

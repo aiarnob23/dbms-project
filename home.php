@@ -68,7 +68,7 @@
             fetch('packages.php')
                 .then(res => res.json())
                 .then(packages => {
-                    // Create HTML for each package and insert into packages-container
+                    //  insertion into packages-container
                     const packagesContainer = document.getElementById('packages-container');
                     packages.forEach(package => {
                         const packageHTML = `

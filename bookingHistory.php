@@ -34,16 +34,16 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Connect to your database
+        //DB connection
         $servername = "localhost";
         $username = "root"; 
         $db_password = "";
         $database = "travelagency"; 
 
-        // Create connection
+        // creation of connection
         $conn = new mysqli($servername, $username, $db_password, $database);
 
-        // Check connection
+        // Checkings of connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -54,7 +54,6 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Display booking history
             echo "<h2>Booking History for $email</h2>";
             echo "<table class='table overflow-x-auto'>
                     <tr>
@@ -85,8 +84,6 @@
             echo "<p class='text-red-500 font-bold'>No Bookings Found</p>";
 
         }
-
-        // Close connection
         $conn->close();
     }
     ?>

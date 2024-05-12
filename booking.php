@@ -10,17 +10,15 @@
 
     <h2>Package Information:</h2>
     <?php
-    // Check if the package ID is set in the query parameters
+    // Checking if package ID is set in the query parameters
     if (isset($_GET['id'])) {
-        // Retrieve package ID from the query parameters
         $packageId = $_GET['id'];
 
-        // Connect to your database
+        // DB connection
         $servername = "localhost";
-        $username = "root"; // Your MySQL username
-        $password = ""; // Your MySQL password
-        $database = "travelagency"; // Your MySQL database name
-
+        $username = "root"; 
+        $password = ""; 
+        $database = "travelagency"; 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $database);
 
@@ -29,13 +27,10 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Query to fetch package information from the database based on the package ID
         $sql = "SELECT * FROM packages WHERE id = $packageId";
         $result = $conn->query($sql);
 
-        // Check if the query returned any result
         if ($result->num_rows > 0) {
-            // Fetch package information
             $row = $result->fetch_assoc();
             $packageName = $row['name'];
             $packageDescription = $row['description'];
@@ -45,7 +40,6 @@
             echo "<p>Description: $packageDescription</p>";
             echo "<p>Price: $$packagePrice</p>";
 
-            // Close connection
             $conn->close();
         } else {
             echo "Package not found!";
